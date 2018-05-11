@@ -33,8 +33,13 @@ def list_todo():
     cur.execute(sql)
 
     rows = cur.fetchall()
+
+    print("\n=========================================================")
+    print("| {}| {}| {}| {}|" .format("id".center(12,' '),"To Do".center(12,' '),"Due".center(12,' '),"finished?".center(12,' ')))
+    print("|-------------------------------------------------------|")
     for row in rows:
-      print(row[0], row[1], row[2], row[3])
+        print("| {}| {}| {}| {}|" .format(str(row[0]).center(12,' '),row[1].center(12,' '),row[2].center(12,' '),str(row[3]).center(12,' ')))
+    print("=========================================================\n")
 
     conn.close()
 
