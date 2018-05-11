@@ -38,7 +38,10 @@ def list_todo():
     print("| {}| {}| {}| {}|" .format("id".center(12,' '),"To Do".center(12,' '),"Due".center(12,' '),"finished?".center(12,' ')))
     print("|-------------------------------------------------------|")
     for row in rows:
-        print("| {}| {}| {}| {}|" .format(str(row[0]).center(12,' '),row[1].center(12,' '),row[2].center(12,' '),str(row[3]).center(12,' ')))
+        if(row[3] == 1):
+            print("| {}| {}| {}| {}|" .format(str(row[0]).center(12,' '),row[1].center(12,' '),row[2].center(12,' '),'O'.center(12,' ')))
+        else:
+            print("| {}| {}| {}| {}|" .format(str(row[0]).center(12,' '),row[1].center(12,' '),row[2].center(12,' '),'X'.center(12,' ')))
     print("=========================================================\n")
 
     conn.close()
