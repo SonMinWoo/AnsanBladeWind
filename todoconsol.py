@@ -1,4 +1,9 @@
 import sqlite3
+import os
+
+def clear_cmd():
+        os.system("clear")
+
 
 def create_db():
 
@@ -49,8 +54,18 @@ def list_todo():
 def add_todo():
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
+
     what = input("Todo? ")
+    while(len(what) > 12):
+        print("Maximum string number of contents is 12. Please reduce the number of letters\n ")
+        what = input("Todo? ")
+
     due = input("Due date? ")
+    while(len(due) > 12):
+        print("Maximum string number of contents is 12. Please reduce the number of letters\n ")
+        due = input("Due date? ")
+
+
     sql = "insert into todo (what, due, finished) values (?, ?, ?)"
     cur.execute(sql, (what, due, 0,))
     conn.commit()
@@ -60,13 +75,30 @@ def modify_todo():
     list_todo()
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
+
     sel_id = input("Record id? ")
+
     sel_what = input("Todo? ")
+    while(len(sel_what) > 12):
+        print("Maximum string number of contents is 12. Please reduce the number of letters\n ")
+        sel_what = input("Todo? ")
+
     sel_due = input("Due date? ")
+    while(len(sel_due) > 12):
+        print("Maximum string number of contents is 12. Please reduce the number of letters\n ")
+        sel_due = input("Due date? ")
+
     sel_fin = input("Finished (1: yes, 0: no)? ")
+    while(1):
+        if(sel_fin == '1' or sel_fin == '0'):
+            break
+        print("Invalid value. Value must be 1 or 0\n")
+        sel_fin = input("Finished (1: yes, 0: no)? ")
+
     cur.execute("update todo set what = ?, due = ?, finished = ? where id = ?", (sel_what, sel_due, sel_fin, sel_id,))
     conn.commit()
     conn.close()
 
+clear_cmd()
 create_db()
 run_program()
