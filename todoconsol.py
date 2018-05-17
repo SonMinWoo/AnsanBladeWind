@@ -48,15 +48,15 @@ def list_todo():
 
     rows = cur.fetchall()
 
-    print("\n" + "="*58)
+    print("\n" + "="*59)
     print("| {}| {}| {}| {}|" .format("id".center(5,' '),"To Do".center(20,' '),"Due".center(15,' '),"finished?".center(10,' ')))
-    print("|"+"-"*56+"|")
+    print("|"+"-"*57+"|")
     for row in rows:
         if(row[3] == 1):
             print("| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),'O'.center(10,' ')))
         else:
             print("| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),'X'.center(10,' ')))
-    print=("="*58+"\n")
+    print("="*59+"\n")
 
     conn.close()
 
