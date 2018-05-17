@@ -4,7 +4,6 @@ import os
 def clear_cmd():
         os.system("clear")
 
-
 def create_db():
 
     conn = sqlite3.connect("lab.db")
@@ -19,7 +18,17 @@ def create_db():
     cur.execute(table_create_sql)
     conn.close()
 
+def help_msg():
+    print("This is simple todo list program. \n \
+To add data, press 'a' and write your todo list. \n \
+To view data, press 'l'. \n \
+To modify data, press 'm'. \n \
+To qhit, press 'q'. \n \
+Made by Hanyang Univ. ERICA AnsanBladeWind \n")
+
 def run_program():
+    print("HELLO THIS IS TODO PROG BY ANSANBLADEWIND")
+    #insert ascii art
     while 1:
         select = input("Choose what to do:\n(a: add data, l : List todo, m: Modify todo, q: Quit)?")
         if select == 'a':
@@ -39,15 +48,15 @@ def list_todo():
 
     rows = cur.fetchall()
 
-    print("\n=========================================================")
-    print("| {}| {}| {}| {}|" .format("id".center(12,' '),"To Do".center(12,' '),"Due".center(12,' '),"finished?".center(12,' ')))
-    print("|-------------------------------------------------------|")
+    print("\n" + "="*58)
+    print("| {}| {}| {}| {}|" .format("id".center(5,' '),"To Do".center(20,' '),"Due".center(15,' '),"finished?".center(10,' ')))
+    print("|"+"-"*56+"|")
     for row in rows:
         if(row[3] == 1):
-            print("| {}| {}| {}| {}|" .format(str(row[0]).center(12,' '),row[1].center(12,' '),row[2].center(12,' '),'O'.center(12,' ')))
+            print("| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),'O'.center(10,' ')))
         else:
-            print("| {}| {}| {}| {}|" .format(str(row[0]).center(12,' '),row[1].center(12,' '),row[2].center(12,' '),'X'.center(12,' ')))
-    print("=========================================================\n")
+            print("| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),'X'.center(10,' ')))
+    print=("="*58+"\n")
 
     conn.close()
 
