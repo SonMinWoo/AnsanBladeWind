@@ -1,8 +1,8 @@
 # AnsanBladeWind
-|Student|
-|:--------:|
-| 구근모 |
-| 문기훈 |
-| 백채현 |
-| 손민우 |
-| 오유림 |
+|Student|Role|
+|:---------------:|:---------------:|
+| 구근모 | function design |
+| 문기훈 | packaging       |
+| 백채현 | documentation   |
+| 손민우 | maintenance     |
+| 오유림 | design          |
