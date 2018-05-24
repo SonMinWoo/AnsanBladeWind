@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import datetime
 
 def clear_cmd():
     os.system("clear")
@@ -42,11 +43,11 @@ def help_msg():
  - To modify data, press '3'. \n \
  - To quit, press '5'. \n \
 Made by Hanyang Univ. ERICA AnsanBladeWind \n \
-Contact Us: https://github.com/SonMinWoo/AnsanBladeWind ")
+Contact Us: https://github.com/SonMinWoo/AnsanBladeWind \n\n")
 
 def run_program():
     while 1:
-        select = input("Choose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 0: Quit) \n")
+        select = input("Choose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 6: Quit) \n")
         if select == '1':
             add_todo()
         elif select == '2':
@@ -57,7 +58,7 @@ def run_program():
             delete_todo()
         elif select == '5':
             help_msg()
-        elif select == '0':
+        elif select == '6':
             break
 
 def list_todo():
@@ -89,13 +90,17 @@ def add_todo():
         print("Maximum string number of contents is 20. Please reduce the number of letters\n ")
         what = input("Todo? \n")
 
-    due = input("Due date? \n")
-    while(len(due) > 15):
-        print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
-        due = input("Due date? \n")
+    due = input("Due date? (YYYY-mm-dd) \n")
+    while(1):
+        try:
+            valid_date = datetime.datetime.strptime(due, '%Y-%m-%d')
+            break
+        except ValueError:
+            print("Invalid date. Due must be 'YYYY-mm-dd' format. ")
+            due = input("Due date? (YYYY-mm-dd) \n")
 
     category = input("Which category? \n")
-    while(len(due) > 15):
+    while(len(category) > 15):
         print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
         category = input("Which category? \n")
 
@@ -113,7 +118,7 @@ def modify_todo():
     sel_id = input("Record id? \n")
 
     #항목별로 수정할 수 있도록 개선
-    sel_item = input("Select item \n 1: what, 2: Due, 3: category, 4: finished \n")
+    sel_item = input("Select item \n 1: Todo, 2: Due, 3: Category, 4: Finished \n")
 
     if(sel_item=='1'):
         sel_what = input("Todo? \n")
@@ -123,10 +128,14 @@ def modify_todo():
         cur.execute("update todo set what = ? where id = ?", (sel_what, sel_id))
 
     elif(sel_item=='2'):
-        sel_due = input("Due date? \n")
-        while(len(sel_due) > 15):
-            print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
-            sel_due = input("Due date? \n")
+        sel_due = input("Due date? (YYYY-mm-dd) \n")
+        while(1):
+            try:
+                valid_date = datetime.datetime.strptime(sel_due, '%Y-%m-%d')
+                break
+            except ValueError:
+                print("Invalid date. Due must be 'YYYY-mm-dd' format. ")
+                sel_due = input("Due date? (YYYY-mm-dd) \n")
         cur.execute("update todo set due = ? where id = ?", (sel_due, sel_id))
 
     elif(sel_item=='3'):
@@ -155,12 +164,9 @@ def delete_todo():
 
     sel_id = input("Record id? \n")
 
-    cur.execute("delete from todo where id = ?", (sel_id))
-
+    cur.execute("delete from todo where id = ?", (sel_id,))
     conn.commit()
     conn.close()
-
-
 
 page()
 clear_cmd()
