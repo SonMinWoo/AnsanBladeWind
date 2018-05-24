@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 def clear_cmd():
-        os.system("clear")
+    os.system("clear")
 
 def page():
 
@@ -17,9 +17,13 @@ def page():
    $$$/    $$$ |$$       |$$ |$$       |$$    $$/ $$ | $$ | $$ |$$       |
    $$/      $$/  $$$$$$$/ $$/  $$$$$$$/  $$$$$$/  $$/  $$/  $$/  $$$$$$$/   """)
 
+<<<<<<< HEAD
    while(int key != 10):
        key = int(input())
 
+=======
+    input("\n\nPress Any Key to Continue...")
+>>>>>>> d7ed5ef057fdc5eea6475209c5860244246938f9
 
 
 def create_db():
@@ -31,6 +35,7 @@ def create_db():
         id integer primary key autoincrement,
         what text not null,
         due text not null,
+        category text not null,
         finished integer);"""
 
     cur.execute(table_create_sql)
@@ -38,24 +43,27 @@ def create_db():
 
 def help_msg():
     print("This is simple todo list program. \n \
-To add data, press 'a' and write your todo list. \n \
-To view data, press 'l'. \n \
-To modify data, press 'm'. \n \
-To qhit, press 'q'. \n \
-Made by Hanyang Univ. ERICA AnsanBladeWind \n")
+ - To add data, press '1' and write your todo list. \n \
+ - To view data, press '2'. \n \
+ - To modify data, press '3'. \n \
+ - To quit, press '5'. \n \
+Made by Hanyang Univ. ERICA AnsanBladeWind \n \
+Contact Us: https://github.com/SonMinWoo/AnsanBladeWind ")
 
 def run_program():
-    print("HELLO THIS IS TODO PROG BY ANSANBLADEWIND")
-    #insert ascii art
     while 1:
-        select = input("Choose what to do:\n(a: add data, l : List todo, m: Modify todo, q: Quit)?")
-        if select == 'a':
+        select = input("Choose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 0: Quit) \n")
+        if select == '1':
             add_todo()
-        elif select == 'l':
+        elif select == '2':
             list_todo()
-        elif select == 'm':
+        elif select == '3':
             modify_todo()
-        elif select == 'q':
+        elif select == '4':
+            delete_todo()
+        elif select == '5':
+            help_msg()
+        elif select == '0':
             break
 
 def list_todo():
@@ -66,15 +74,15 @@ def list_todo():
 
     rows = cur.fetchall()
 
-    print("\n" + "="*59)
-    print("| {}| {}| {}| {}|" .format("id".center(5,' '),"To Do".center(20,' '),"Due".center(15,' '),"finished?".center(10,' ')))
-    print("|"+"-"*57+"|")
+    print("\n" + "="*76)
+    print("| {}| {}| {}| {}| {}|" .format("id".center(5,' '),"To Do".center(20,' '),"Due".center(15,' '),"Category".center(15,' '),"finished?".center(10,' ')))
+    print("|"+"-"*74+"|")
     for row in rows:
-        if(row[3] == 1):
-            print("| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),'O'.center(10,' ')))
+        if(row[4] == 1):
+            print("| {}| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' '),'O'.center(10,' ')))
         else:
-            print("| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),'X'.center(10,' ')))
-    print("="*59+"\n")
+            print("| {}| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' '),'X'.center(10,' ')))
+    print("="*76+"\n")
 
     conn.close()
 
@@ -82,19 +90,24 @@ def add_todo():
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
 
-    what = input("Todo? ")
-    while(len(what) > 12):
-        print("Maximum string number of contents is 12. Please reduce the number of letters\n ")
-        what = input("Todo? ")
+    what = input("Todo? \n")
+    while(len(what) > 20):
+        print("Maximum string number of contents is 20. Please reduce the number of letters\n ")
+        what = input("Todo? \n")
 
-    due = input("Due date? ")
-    while(len(due) > 12):
-        print("Maximum string number of contents is 12. Please reduce the number of letters\n ")
-        due = input("Due date? ")
+    due = input("Due date? \n")
+    while(len(due) > 15):
+        print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
+        due = input("Due date? \n")
+
+    category = input("Which category? \n")
+    while(len(due) > 15):
+        print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
+        category = input("Which category? \n")
 
 
-    sql = "insert into todo (what, due, finished) values (?, ?, ?)"
-    cur.execute(sql, (what, due, 0,))
+    sql = "insert into todo (what, due, category, finished) values (?, ?, ?, ?)"
+    cur.execute(sql, (what, due, category, 0))
     conn.commit()
     conn.close()
 
@@ -103,29 +116,62 @@ def modify_todo():
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
 
-    sel_id = input("Record id? ")
+    sel_id = input("Record id? \n")
 
-    sel_what = input("Todo? ")
-    while(len(sel_what) > 12):
-        print("Maximum string number of contents is 12. Please reduce the number of letters\n ")
-        sel_what = input("Todo? ")
+    #항목별로 수정할 수 있도록 개선
+    sel_item = input("Select item \n 1: what, 2: Due, 3: category, 4: finished \n")
 
-    sel_due = input("Due date? ")
-    while(len(sel_due) > 12):
-        print("Maximum string number of contents is 12. Please reduce the number of letters\n ")
-        sel_due = input("Due date? ")
+    if(sel_item=='1'):
+        sel_what = input("Todo? \n")
+        while(len(sel_what) > 20):
+            print("Maximum string number of contents is 20. Please reduce the number of letters\n ")
+            sel_what = input("Todo? \n")
+        cur.execute("update todo set what = ? where id = ?", (sel_what, sel_id))
 
-    sel_fin = input("Finished (1: yes, 0: no)? ")
-    while(1):
-        if(sel_fin == '1' or sel_fin == '0'):
-            break
-        print("Invalid value. Value must be 1 or 0\n")
-        sel_fin = input("Finished (1: yes, 0: no)? ")
+    elif(sel_item=='2'):
+        sel_due = input("Due date? \n")
+        while(len(sel_due) > 15):
+            print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
+            sel_due = input("Due date? \n")
+        cur.execute("update todo set due = ? where id = ?", (sel_due, sel_id))
 
-    cur.execute("update todo set what = ?, due = ?, finished = ? where id = ?", (sel_what, sel_due, sel_fin, sel_id,))
+    elif(sel_item=='3'):
+        sel_catagory = input("Which category? \n")
+        while(len(due) > 15):
+            print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
+            sel_category = input("Which category? \n")
+        cur.execute("update todo set category = ? where id = ?", (sel_catagory, sel_id))
+
+    elif(sel_item=='4'):
+        sel_fin = input("Finished (1: yes, 0: no)? \n")
+        while(1):
+            if(sel_fin == '1' or sel_fin == '0'):
+                break
+            print("Invalid value. Value must be 1 or 0\n")
+            sel_fin = input("Finished (1: yes, 0: no)? \n")
+        cur.execute("update todo set finished = ? where id = ?", (sel_fin, sel_id))
+
     conn.commit()
     conn.close()
 
+def delete_todo():
+    list_todo()
+    conn = sqlite3.connect("lab.db")
+    cur = conn.cursor()
+
+    sel_id = input("Record id? \n")
+
+    cur.execute("delete from todo where id = ?", (sel_id))
+
+    conn.commit()
+    conn.close()
+
+<<<<<<< HEAD
+=======
+
+
+page()
+>>>>>>> d7ed5ef057fdc5eea6475209c5860244246938f9
 clear_cmd()
 page()
 
