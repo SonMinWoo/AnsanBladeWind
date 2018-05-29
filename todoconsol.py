@@ -6,21 +6,23 @@ def clear_cmd():
     os.system("clear")
 
 def page():
+    print("""\n\n\n
+            ██    █   █    ██     ██   █    █
+           █ █   █ █  █   █  █  █  █   ██   █
+          ████   █  █ █    █    ████  █  █ █
+         █   █   █  ██  █  █   █   █  █   ██
+        █    █  █    █   ██   █    █  █    █
 
-    print("""  __       __            __    """)
-    print(""" /  |  _  /  |          /  |   """)
-    print(""" $$ | / \ $$ |  ______  $$ |  _______   ______   _____  ____    ______  """)
-    print(""" $$ |/$  \$$ | /      / $$ | /       | /      \ /     \/    \  /      \ """)
-    print(""" $$ /$$$  $$ |/$$$$$$  |$$ |/$$$$$$$/ /$$$$$$  |$$$$$$ $$$$  |/$$$$$$  |""")
-    print(""" $$ $$/$$ $$ |$$    $$ |$$ |$$ |      $$ |  $$ |$$ | $$ | $$ |$$    $$ |""")
-    print(""" $$$$/  $$$$ |$$$$$$$$/ $$ |$$ |_____ $$ |__$$ |$$ | $$ | $$ |$$$$$$$$/ """)
-    print(""" $$$/    $$$ |$$       |$$ |$$       |$$    $$/ $$ | $$ | $$ |$$       |""")
-    print(""" $$/      $$/  $$$$$$$/ $$/  $$$$$$$/  $$$$$$/  $$/  $$/  $$/  $$$$$$$/ """)
+         ███   █      ██    ███     ███      █   █  █   ███  █   █  ███
+        █  █   █     █ █    █  █   █         █  ██  █    █   ██  █  █  █
+       ████   █     ████   █   █   ███       █ █ █  █   █   █  █ █  █  █
+       █  █  █      █  █   █  █   █          ██   ██    █   █   █  █  █
+      ████   ████  █   █  ████   ████        █    █   ███   █   █  ███
+                                                                          """)
 
-    input("\n\nPress Any Key to Continue...")
+    input("\n\n\nPress Any Key to Continue...\n")
 
 def create_db():
-
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
 
@@ -39,65 +41,76 @@ def help_msg():
  - To add data, press '1' and write your todo list. \n \
  - To view data, press '2'. \n \
  - To modify data, press '3'. \n \
- - To quit, press '5'. \n \
+ - To delete todo, press '4'. \n \
+ - To quit, press '6'. \n \
 Made by Hanyang Univ. ERICA AnsanBladeWind \n \
 Contact Us: https://github.com/SonMinWoo/AnsanBladeWind \n\n")
 
 def run_program():
     while 1:
-        select = input("Choose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 6: Quit) \n")
+        select = input("\nChoose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 6: Quit) \n")
         if select == '1':
+            clear_cmd()
+            print(" >> Add Todo")
             add_todo()
         elif select == '2':
-            listselect = input("What items are you looking at (1: All, 2: Finished only)? \n")
-            if listselect == '1':
-                list_todo()
-            elif listselect == '2':
-                filter_list_todo()
+            clear_cmd()
+            print(" >> List Todo")
+            listselect = input("What items are you looking at (1: All, 2: Finished, 3: Not Finished)? \n")
+            list_todo(listselect)
         elif select == '3':
+            clear_cmd()
+            print(" >> Modify Todo")
             modify_todo()
         elif select == '4':
+            clear_cmd()
+            print(" >> Delete Todo")
             delete_todo()
         elif select == '5':
+            clear_cmd()
+            print(" >> Help")
             help_msg()
         elif select == '6':
+            clear_cmd()
             break
 
-def list_todo():
+def list_todo(data):
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
-    sql = "select * from todo where 1"
-    cur.execute(sql)
+    rows = filter_todo(data)
 
-    rows = cur.fetchall()
-
-    print("\n" + "="*76)
-    print("| {}| {}| {}| {}| {}|" .format("id".center(5,' '),"To Do".center(20,' '),"Due".center(15,' '),"Category".center(15,' '),"finished?".center(10,' ')))
-    print("|"+"-"*74+"|")
+    print("\n" + "╔══════╦═════════════════════╦════════════════╦════════════════╦═══════════╗")
+    print("║ {}║ {}║ {}║ {}║ {}║" .format("id".center(5,' '),"To Do".center(20,' '),"Due".center(15,' '),"Category".center(15,' '),"finished?".center(10,' ')))
+    print("╠══════╬═════════════════════╬════════════════╬════════════════╬═══════════╣")
     for row in rows:
         if(row[4] == 1):
-            print("| {}| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' '),'O'.center(10,' ')))
+            print("║ {}║ {}║ {}║ {}║ {}║" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' '),'O'.center(10,' ')))
         else:
-            print("| {}| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' '),'X'.center(10,' ')))
-    print("="*76+"\n")
+            print("║ {}║ {}║ {}║ {}║ {}║" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' '),'X'.center(10,' ')))
+    print("╚══════╩═════════════════════╩════════════════╩════════════════╩═══════════╝")
 
     conn.close()
 
-def filter_list_todo():
+def filter_todo(filter):
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
-    sql = "select * from todo where 1"
-    cur.execute(sql)
 
-    rows = cur.fetchall()
+    if(filter == '1'):
+        cur.execute("select * from todo where 1")
+        rows = cur.fetchall()
+        conn.close()
+        return rows
+    elif(filter == '2'):
+        cur.execute("select * from todo where finished = 1")
+        rows = cur.fetchall()
+        conn.close()
+        return rows
+    elif(filter == '3'):
+        cur.execute("select * from todo where finished = 0")
+        rows = cur.fetchall()
+        conn.close()
+        return rows
 
-    print("\n" + "="*64)
-    print("| {}| {}| {}| {}|" .format("id".center(5,' '),"To Do".center(20,' '),"Due".center(15,' '),"Category".center(15,' ')))
-    print("|"+"-"*62+"|")
-    for row in rows:
-        if(row[4] == 1):
-            print("| {}| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' ')))
-    conn.close()
 
 def add_todo():
     conn = sqlite3.connect("lab.db")
@@ -129,7 +142,7 @@ def add_todo():
     conn.close()
 
 def modify_todo():
-    list_todo()
+    list_todo('1')
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
 
@@ -176,7 +189,7 @@ def modify_todo():
     conn.close()
 
 def delete_todo():
-    list_todo()
+    list_todo('1')
     conn = sqlite3.connect("lab.db")
     cur = conn.cursor()
 
@@ -189,6 +202,7 @@ def delete_todo():
 
 clear_cmd()
 page()
+clear_cmd()
 
 create_db()
 run_program()
