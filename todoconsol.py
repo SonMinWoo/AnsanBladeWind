@@ -138,7 +138,7 @@ def modify_todo():
 
     elif(sel_item=='3'):
         sel_catagory = input("Which category? \n")
-        while(len(due) > 15):
+        while(len(sel_catagory) > 15):
             print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
             sel_category = input("Which category? \n")
         cur.execute("update todo set category = ? where id = ?", (sel_catagory, sel_id))
