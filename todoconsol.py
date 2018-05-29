@@ -49,7 +49,11 @@ def run_program():
         if select == '1':
             add_todo()
         elif select == '2':
-            list_todo()
+            listselect = input("What items are you looking at (1: All, 2: Finished only)? \n")
+            if listselect == '1':
+                list_todo()
+            elif listselect == '2':
+                filter_list_todo()
         elif select == '3':
             modify_todo()
         elif select == '4':
@@ -77,6 +81,22 @@ def list_todo():
             print("| {}| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' '),'X'.center(10,' ')))
     print("="*76+"\n")
 
+    conn.close()
+
+def filter_list_todo():
+    conn = sqlite3.connect("lab.db")
+    cur = conn.cursor()
+    sql = "select * from todo where 1"
+    cur.execute(sql)
+
+    rows = cur.fetchall()
+
+    print("\n" + "="*64)
+    print("| {}| {}| {}| {}|" .format("id".center(5,' '),"To Do".center(20,' '),"Due".center(15,' '),"Category".center(15,' ')))
+    print("|"+"-"*62+"|")
+    for row in rows:
+        if(row[4] == 1):
+            print("| {}| {}| {}| {}| {}|" .format(str(row[0]).center(5,' '),row[1].center(20,' '),row[2].center(15,' '),row[3].center(15,' ')))
     conn.close()
 
 def add_todo():
