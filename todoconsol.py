@@ -1,6 +1,7 @@
 import sqlite3
 import os
 import datetime
+import consolcolor as color
 
 def clear_cmd():
     os.system("clear")
@@ -20,7 +21,7 @@ def page():
       ████   ████  █   █  ████   ████        █    █   ███   █   █  ███
                                                                           """)
 
-    input("\n\n\nPress Any Key to Continue...\n")
+    input(color.C_CYAN + "\n\n\nPress Any Key to Continue...\n"+color.C_END)
 
 def create_db():
     conn = sqlite3.connect("lab.db")
@@ -148,7 +149,6 @@ def modify_todo():
 
     sel_id = input("Record id? \n")
 
-    #항목별로 수정할 수 있도록 개선
     sel_item = input("Select item \n 1: Todo, 2: Due, 3: Category, 4: Finished \n")
 
     if(sel_item=='1'):
