@@ -48,7 +48,7 @@ Contact Us: https://github.com/SonMinWoo/AnsanBladeWind \n\n")
 
 def run_program():
     while 1:
-        select = input("\nChoose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 6: Quit) \n")
+        select = input("\nChoose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 6: Quit) \n").strip()
         if select == '1':
             clear_cmd()
             print(" >> Add Todo")
@@ -56,7 +56,7 @@ def run_program():
         elif select == '2':
             clear_cmd()
             print(" >> List Todo")
-            listselect = input("What items are you looking at (1: All, 2: Finished, 3: Not Finished)? \n")
+            listselect = input("What items are you looking at (1: All, 2: Finished, 3: Not Finished)? \n").strip()
             list_todo(listselect)
         elif select == '3':
             clear_cmd()
