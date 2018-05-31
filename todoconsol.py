@@ -1,6 +1,7 @@
 import sqlite3
 import os
 import datetime
+import consolcolor as color
 
 def clear_cmd():
     os.system("clear")
@@ -20,7 +21,7 @@ def page():
       ████   ████  █   █  ████   ████        █    █   ███   █   █  ███
                                                                           """)
 
-    input("\n\n\nPress Any Key to Continue...\n")
+    input(color.C_CYAN + "\n\n\nPress Any Key to Continue...\n"+color.C_END)
 
 def create_db():
     conn = sqlite3.connect("lab.db")
