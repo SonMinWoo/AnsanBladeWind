@@ -149,7 +149,6 @@ def modify_todo():
 
     sel_id = input("Record id? \n")
 
-    #항목별로 수정할 수 있도록 개선
     sel_item = input("Select item \n 1: Todo, 2: Due, 3: Category, 4: Finished \n")
 
     if(sel_item=='1'):
