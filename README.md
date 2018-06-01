@@ -8,6 +8,6 @@
 |:---------------:|:---------------:|
 | KOO KEUNMO | function design |
 | MOON KIHUN | packaging       |
-| BAEK CHEAHYUN | documentation   |
+| BAEK CHAEHYUN | documentation   |
 | SON MINWOO | maintenance     |
 | OH YULIM | design          |
