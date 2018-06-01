@@ -1,8 +1,8 @@
-C_END     = "\033[0m" """ all color effect delete"""
-C_BOLD    = "\033[1m" """ change to bold word"""
-C_INVERSE = "\033[3m" """ change to Italic word"""
+C_END     = '\033[0m'
+C_BOLD    = "\033[1m"
+C_INVERSE = "\033[3m"
 
-C_BLACK  = "\033[30m" """change to black color, below this, change to color of name"""
+C_BLACK  = "\033[30m"
 C_RED    = "\033[31m"
 C_GREEN  = "\033[32m"
 C_YELLOW = "\033[33m"
@@ -11,7 +11,7 @@ C_PURPLE = "\033[35m"
 C_CYAN   = "\033[36m"
 C_WHITE  = "\033[37m"
 
-C_BGBLACK  = "\033[40m" """ background color"""
+C_BGBLACK  = "\033[40m"
 C_BGRED    = "\033[41m"
 C_BGGREEN  = "\033[42m"
 C_BGYELLOW = "\033[43m"
