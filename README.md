@@ -1,8 +1,30 @@
 # AnsanBladeWind
+
+##Simple consol todo program  
+* Best for Linux environment  
+* Python3 Required  
+
 |Student|Role|
 |:---------------:|:---------------:|
-| 구근모 | function design |
-| 문기훈 | packaging       |
-| 백채현 | documentation   |
-| 손민우 | maintenance     |
-| 오유림 | design          |
+| KOO KEUNMO | function design |
+| MOON KIHUN | packaging       |
+| BAEK CHAEHYUN | documentation   |
+| SON MINWOO | maintenance     |
+| OH YULIM | design          |
+
+
+Installation
+-----------------
+
+::
+
+	pip install todoconsol
+  
+  ::
+
+	pip install consolcolor
+  
+  ::
+
+	todoconsol
+  
