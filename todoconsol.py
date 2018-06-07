@@ -42,7 +42,7 @@ def help_msg():
  - To view data, press '2'. \n \
  - To modify data, press '3'. \n \
  - To delete todo, press '4'. \n \
- - To quit, press '6'. \n \
+ - To quit, press '6'. \n\n \
 Made by Hanyang Univ. ERICA AnsanBladeWind \n \
 Contact Us: https://github.com/SonMinWoo/AnsanBladeWind \n\n")
 
@@ -52,38 +52,39 @@ def run_program():
         if select == '1':
             clear_cmd()
             print(" >> Add Todo")
-            back = input("press '0' to go main menu")
+            back = input("press '0' to go main menu, any other key to continue..\n")
             if(back=='0'):
-                run_program()
-            add_todo()
+                continue
+            else:
+                add_todo()
         elif select == '2':
             clear_cmd()
             print(" >> List Todo")
-            back = input("press '0' to go main menu")
+            back = input("press '0' to go main menu, any other key to continue..\n")
             if(back=='0'):
-                run_program()
-            listselect = input("What items are you looking at (1: All, 2: Finished, 3: Not Finished)? \n")
-            list_todo(listselect)
+                continue
+            else:
+                listselect = input("What items are you looking at (1: All, 2: Finished, 3: Not Finished)? \n")
+                list_todo(listselect)
         elif select == '3':
             clear_cmd()
             print(" >> Modify Todo")
-            back = input("press '0' to go main menu")
+            back = input("press '0' to go main menu, any other key to continue..\n")
             if(back=='0'):
-                run_program()
-            modify_todo()
+                continue
+            else:
+                modify_todo()
         elif select == '4':
             clear_cmd()
             print(" >> Delete Todo")
-            back = input("press '0' to go main menu")
+            back = input("press '0' to go main menu, any other key to continue..\n")
             if(back=='0'):
-                run_program()
-            delete_todo()
+                continue
+            else:
+                delete_todo()
         elif select == '5':
             clear_cmd()
             print(" >> Help")
-            back = input("press '0' to go main menu")
-            if(back=='0'):
-                run_program()
             help_msg()
         elif select == '6':
             clear_cmd()
