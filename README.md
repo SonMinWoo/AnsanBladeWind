@@ -11,3 +11,20 @@
 | BAEK CHAEHYUN | documentation   |
 | SON MINWOO | maintenance     |
 | OH YULIM | design          |
+
+
+Installation
+-----------------
+
+::
+
+	pip install todoconsol
+  
+  ::
+
+	pip install consolcolor
+  
+  ::
+
+	todoconsol
+  
