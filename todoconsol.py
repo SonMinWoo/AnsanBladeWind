@@ -45,7 +45,7 @@ def help_msg():
  - To view data, press '2'. \n \
  - To modify data, press '3'. \n \
  - To delete todo, press '4'. \n \
- - To quit, press '6'. \n \
+ - To quit, press '6'. \n\n \
 Made by Hanyang Univ. ERICA AnsanBladeWind \n \
 Contact Us: https://github.com/SonMinWoo/AnsanBladeWind \n\n")
 
@@ -55,20 +55,36 @@ def run_program():
         if select == '1':
             clear_cmd()
             print(" >> Add Todo")
-            add_todo()
+            back = input("press '0' to go main menu, any other key to continue..\n")
+            if(back=='0'):
+                continue
+            else:
+                add_todo()
         elif select == '2':
             clear_cmd()
             print(" >> List Todo")
-            listselect = input("What items are you looking at (1: All, 2: Finished, 3: Not Finished)? \n").strip()
-            list_todo(listselect)
+            back = input("press '0' to go main menu, any other key to continue..\n")
+            if(back=='0'):
+                continue
+            else:
+                listselect = input("What items are you looking at (1: All, 2: Finished, 3: Not Finished)? \n")
+                list_todo(listselect)
         elif select == '3':
             clear_cmd()
             print(" >> Modify Todo")
-            modify_todo()
+            back = input("press '0' to go main menu, any other key to continue..\n")
+            if(back=='0'):
+                continue
+            else:
+                modify_todo()
         elif select == '4':
             clear_cmd()
             print(" >> Delete Todo")
-            delete_todo()
+            back = input("press '0' to go main menu, any other key to continue..\n")
+            if(back=='0'):
+                continue
+            else:
+                delete_todo()
         elif select == '5':
             clear_cmd()
             print(" >> Help")
