@@ -6,17 +6,19 @@ setup(
 
     name             = 'todoconsol',
 
-    version          = '0.1',
+    version          = '1.0.3',
 
-    description      = 'The Open Source Ansan Blade Wind',
+    description      = 'Simple Todoconsol Program',
 
-    author           = 'Moon Ki hun',
+    license          = 'MIT',
+
+    author           = 'Ansan Blade Wind',
 
     author_email     = 'hun97106@naver.com',
 
     url              = 'https://github.com/SonMinWoo/AnsanBladeWind',
 
-    download_url     = 'https://github.com/SonMinWoo/AnsanBladeWind/archive/Hanyang-1.0.tar.gz',
+    download_url     = 'https://github.com/SonMinWoo/AnsanBladeWind/archive/todoconsol-0.1.tar.gz',
 
     install_requires = [ ],
 
@@ -26,9 +28,16 @@ setup(
 
     python_requires  = '>=3',
 
-    package_data     =  {'todoconsol' : [ "LICENSE" ]},
+    package_data     =  {'todoconsol' : ["LICENSE.md",'consolcolor']},
 
-    zip_safe=False,
+    py_modules       = ['todoconsol' ],
+
+    entry_points     = {
+                          'console_scripts' : [
+                              'todoconsol = todoconsol:run_program',
+                              ],
+                          },
+    zip_safe = False,
 
     classifiers      = [
 
@@ -43,6 +52,8 @@ setup(
         'Programming Language :: Python :: 3.5',
 
         'Programming Language :: Python :: 3.6'
+
+        
 
     ]
 
