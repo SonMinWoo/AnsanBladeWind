@@ -1,6 +1,7 @@
 import sqlite3
 import os
 import datetime
+import consolcolor as color
 
 def clear_cmd():
     os.system("clear")
@@ -20,7 +21,7 @@ def page():
       ████   ████  █   █  ████   ████        █    █   ███   █   █  ███
                                                                           """)
 
-    input("\n\n\nPress Any Key to Continue...\n")
+    input(color.C_CYAN + "\n\n\nPress Any Key to Continue...\n"+color.C_END)
 
 def create_db():
     conn = sqlite3.connect("lab.db")
@@ -48,7 +49,7 @@ Contact Us: https://github.com/SonMinWoo/AnsanBladeWind \n\n")
 
 def run_program():
     while 1:
-        select = input("\nChoose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 6: Quit) \n")
+        select = input("\nChoose what to do:\n(1: Add data, 2: List todo, 3: Modify todo, 4: Delete todo, 5: Help, 6: Quit) \n").strip()
         if select == '1':
             clear_cmd()
             print(" >> Add Todo")
@@ -164,7 +165,6 @@ def modify_todo():
 
     sel_id = input("Record id? \n")
 
-    #항목별로 수정할 수 있도록 개선
     sel_item = input("Select item \n 1: Todo, 2: Due, 3: Category, 4: Finished \n")
 
     if(sel_item=='1'):
