@@ -1,7 +1,9 @@
+#!/usr/bin/env python
 import sqlite3
 import os
 import datetime
 import consolcolor as color
+
 
 def clear_cmd():
     os.system("clear")
