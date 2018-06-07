@@ -52,23 +52,38 @@ def run_program():
         if select == '1':
             clear_cmd()
             print(" >> Add Todo")
+            back = input("press '0' to go main menu")
+            if(back=='0'):
+                run_program()
             add_todo()
         elif select == '2':
             clear_cmd()
             print(" >> List Todo")
+            back = input("press '0' to go main menu")
+            if(back=='0'):
+                run_program()
             listselect = input("What items are you looking at (1: All, 2: Finished, 3: Not Finished)? \n")
             list_todo(listselect)
         elif select == '3':
             clear_cmd()
             print(" >> Modify Todo")
+            back = input("press '0' to go main menu")
+            if(back=='0'):
+                run_program()
             modify_todo()
         elif select == '4':
             clear_cmd()
             print(" >> Delete Todo")
+            back = input("press '0' to go main menu")
+            if(back=='0'):
+                run_program()
             delete_todo()
         elif select == '5':
             clear_cmd()
             print(" >> Help")
+            back = input("press '0' to go main menu")
+            if(back=='0'):
+                run_program()
             help_msg()
         elif select == '6':
             clear_cmd()
