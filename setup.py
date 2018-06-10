@@ -6,7 +6,7 @@ setup(
 
     name             = 'todoconsol',
 
-    version          = '1.0.3',
+    version          = '1.0.5',
 
     description      = 'Simple Todoconsol Program',
 
