@@ -238,14 +238,6 @@ def delete_todo():
     conn.close()
 
 def main():
-    clear_cmd()
-    page()
-    clear_cmd()
-
-    create_db()
-    run_program()
-
-if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='TODOlist Consol Program')
     parser.add_argument('-l','--list', type=str,help='list of todoconsol')
     parser.add_argument('-a','--add',help='add data to todoconsol', action = 'store_true')
@@ -263,4 +255,12 @@ if __name__ == '__main__':
     elif args.remove:
         delete_todo()
     else:
+        clear_cmd()
+        page()
+        clear_cmd()
+
+        create_db()
+        run_program()
+
+if __name__ == '__main__':
         main()
