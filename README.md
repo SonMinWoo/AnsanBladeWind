@@ -20,11 +20,7 @@ Installation
 
 	pip install todoconsol
   
-  ::
-
-	pip install consolcolor
-  
-  ::
+::
 
 	todoconsol
   
