@@ -42,7 +42,7 @@ def page():
       ████   ████  █   █  ████   ████        █    █   ███   █   █  ███
                                                                           """)
 
-    input(color.C_CYAN + "\n\n\nPress Any Key to Continue...\n"+color.C_END)
+    input(C_CYAN + "\n\n\nPress Any Key to Continue...\n"+C_END)
 
 def create_db():
     conn = sqlite3.connect("lab.db")
