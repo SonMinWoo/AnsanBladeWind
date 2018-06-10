@@ -6,7 +6,7 @@ setup(
 
     name             = 'todoconsol',
 
-    version          = '1.0.5',
+    version          = '1.1.0',
 
     description      = 'Simple Todoconsol Program',
 
@@ -34,7 +34,7 @@ setup(
 
     entry_points     = {
                           'console_scripts' : [
-                              'todoconsol = todoconsol:run_program',
+                              'todoconsol = todoconsol:main',
                               ],
                           },
     zip_safe = False,
