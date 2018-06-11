@@ -159,7 +159,7 @@ def add_todo():
 
     what = input("Todo? \n")
     while(len(what) > 20):
-        print("Maximum string number of contents is 20. Please reduce the number of letters\n ")
+        print(C_RED + "Maximum string number of contents is 20. Please reduce the number of letters\n "+ C_END)
         what = input("Todo? \n")
 
     due = input("Due date? (YYYY-mm-dd) \n")
@@ -168,12 +168,12 @@ def add_todo():
             valid_date = datetime.datetime.strptime(due, '%Y-%m-%d')
             break
         except ValueError:
-            print("Invalid date. Due must be 'YYYY-mm-dd' format. ")
+            print(C_RED + "Invalid date. Due must be 'YYYY-mm-dd' format. "+ C_END)
             due = input("Due date? (YYYY-mm-dd) \n")
 
     category = input("Which category? \n")
     while(len(category) > 15):
-        print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
+        print(C_RED + "Maximum string number of contents is 15. Please reduce the number of letters\n "+ C_END)
         category = input("Which category? \n")
 
 
@@ -194,7 +194,7 @@ def modify_todo():
     if(sel_item=='1'):
         sel_what = input("Todo? \n")
         while(len(sel_what) > 20):
-            print("Maximum string number of contents is 20. Please reduce the number of letters\n ")
+            print(C_RED + "Maximum string number of contents is 20. Please reduce the number of letters\n "+ C_END)
             sel_what = input("Todo? \n")
         cur.execute("update todo set what = ? where id = ?", (sel_what, sel_id))
 
@@ -205,14 +205,14 @@ def modify_todo():
                 valid_date = datetime.datetime.strptime(sel_due, '%Y-%m-%d')
                 break
             except ValueError:
-                print("Invalid date. Due must be 'YYYY-mm-dd' format. ")
+                print(C_RED+"Invalid date. Due must be 'YYYY-mm-dd' format. "+ C_END)
                 sel_due = input("Due date? (YYYY-mm-dd) \n")
         cur.execute("update todo set due = ? where id = ?", (sel_due, sel_id))
 
     elif(sel_item=='3'):
         sel_catagory = input("Which category? \n")
         while(len(sel_catagory) > 15):
-            print("Maximum string number of contents is 15. Please reduce the number of letters\n ")
+            print(C_RED + "Maximum string number of contents is 15. Please reduce the number of letters\n "+ C_END)
             sel_category = input("Which category? \n")
         cur.execute("update todo set category = ? where id = ?", (sel_catagory, sel_id))
 
@@ -221,7 +221,7 @@ def modify_todo():
         while(1):
             if(sel_fin == '1' or sel_fin == '0'):
                 break
-            print("Invalid value. Value must be 1 or 0\n")
+            print(C_RED +"Invalid value. Value must be 1 or 0\n"+ C_END)
             sel_fin = input("Finished (1: yes, 0: no)? \n")
         cur.execute("update todo set finished = ? where id = ?", (sel_fin, sel_id))
 
