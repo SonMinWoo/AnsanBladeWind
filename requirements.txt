@@ -9,7 +9,7 @@ chardet==3.0.4
 colorama==0.3.9
 conda==4.4.10
 ConfigArgParse==0.12.0
-cryptography==2.1.4
+cryptography==2.5
 flake8==3.5.0
 humanize==0.5.1
 idna==2.6
@@ -26,13 +26,13 @@ pyOpenSSL==17.5.0
 PySocks==1.6.7
 python-dateutil==2.7.2
 pywin32==222
-requests==2.18.4
+requests==2.21.0
 ruamel-yaml==0.15.35
 six==1.11.0
 tabulate==0.8.2
 todoconsol==1.1.1
 tqdm==4.23.1
-urllib3==1.22
+urllib3==1.24
 win-inet-pton==1.0.1
 wincertstore==0.2
 yarl==1.2.2
