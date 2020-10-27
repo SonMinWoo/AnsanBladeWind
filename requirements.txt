@@ -9,7 +9,7 @@ chardet==3.0.4
 colorama==0.3.9
 conda==4.4.10
 ConfigArgParse==0.12.0
-cryptography==2.5
+cryptography==3.2
 flake8==3.5.0
 humanize==0.5.1
 idna==2.6
