@@ -32,7 +32,7 @@ six==1.11.0
 tabulate==0.8.2
 todoconsol==1.1.1
 tqdm==4.23.1
-urllib3==1.24
+urllib3==1.26.5
 win-inet-pton==1.0.1
 wincertstore==0.2
 yarl==1.2.2
