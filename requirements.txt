@@ -25,7 +25,7 @@ pyflakes==1.6.0
 pyOpenSSL==17.5.0
 PySocks==1.6.7
 python-dateutil==2.7.2
-pywin32==222
+pywin32==301
 requests==2.21.0
 ruamel-yaml==0.15.35
 six==1.11.0
